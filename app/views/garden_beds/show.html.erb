@@ -16,7 +16,7 @@
 <%= link_to 'Edit', edit_garden_bed_path(@garden_bed) %> |
 <%= link_to 'Back', garden_beds_path %>
 
-<h2>Plants</h2>
+<h2><%= @garden_bed.plants.count %> Plants</h2>
 
 <ul>
   <% @garden_bed.plants.each do |plant| %>
