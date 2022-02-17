@@ -28,12 +28,12 @@
 
   <div class="field">
     <%= form.label :garden_bed_id %>
-    <%= form.text_field :garden_bed_id %>
+    <%= form.select(:garden_bed_id, GardenBed.all.map {|garden_bed| [ garden_bed.name, garden_bed.id ] }, { include_blank: false }) %>
   </div>
 
   <div class="field">
     <%= form.label :species_id %>
-    <%= form.text_field :species_id %>
+    <%= form.select(:species_id, Species.all.map {|species| [ species.name, species.id ] }, { include_blank: false }) %>
   </div>
 
   <div class="actions">
