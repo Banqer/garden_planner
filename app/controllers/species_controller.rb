@@ -3,7 +3,7 @@ class SpeciesController < ApplicationController
 
   # GET /species or /species.json
   def index
-    @species = Species.all
+    @species = Species.all.order(:name)
   end
 
   # GET /species/1 or /species/1.json
