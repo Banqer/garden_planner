@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Garden Beds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last weeded at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @garden_beds.each do |garden_bed| %>
+      <tr>
+        <td><%= garden_bed.name %></td>
+        <td><%= garden_bed.last_weeded_at %></td>
+        <td><%= link_to 'Show', garden_bed %></td>
+        <td><%= link_to 'Edit', edit_garden_bed_path(garden_bed) %></td>
+        <td><%= link_to 'Destroy', garden_bed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Garden Bed', new_garden_bed_path %>

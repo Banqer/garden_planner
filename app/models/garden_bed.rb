@@ -1,0 +1,2 @@
+class GardenBed < ApplicationRecord
+end

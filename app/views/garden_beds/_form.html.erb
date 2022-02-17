@@ -1,0 +1,27 @@
+<%= form_with(model: garden_bed) do |form| %>
+  <% if garden_bed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(garden_bed.errors.count, "error") %> prohibited this garden_bed from being saved:</h2>
+
+      <ul>
+        <% garden_bed.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_weeded_at %>
+    <%= form.datetime_select :last_weeded_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
