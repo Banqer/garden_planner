@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
+
   resources :plants
   resources :species
   resources :garden_beds
