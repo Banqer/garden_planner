@@ -6,8 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-["Broccoli", "Cabbage", "Carrot", "Kumara", "Potato"].each do |species_name|
+VEGETABLE_SPECIES_NAMES = ["Broccoli", "Cabbage", "Carrot", "Kumara", "Potato"]
+
+VEGETABLE_SPECIES_NAMES.each do |species_name|
   Species.create(name: species_name)
+end
+
+WEED_SPECIES_NAMES = ["Clover", "Dandelion", "Grass", "Hayweed", "Ivy", "Mallow"]
+
+WEED_SPECIES_NAMES.each do |species_name|
+  Species.create(name: species_name, weed: true)
 end
 
 GardenBed.create(
