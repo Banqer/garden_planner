@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @garden_bed.name %>
+</h1>
+
+<p>
+  <%= @garden_bed.species_list %>
 </p>
 
 <p>
@@ -12,3 +15,13 @@
 
 <%= link_to 'Edit', edit_garden_bed_path(@garden_bed) %> |
 <%= link_to 'Back', garden_beds_path %>
+
+<h2>Plants</h2>
+
+<ul>
+  <% @garden_bed.plants.each do |plant| %>
+    <li>
+      <%= link_to plant.name, plant %>
+    </li>
+  <% end %>
+</ul>

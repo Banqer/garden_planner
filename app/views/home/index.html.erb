@@ -6,6 +6,7 @@
   <% @recent_plants.each do |plant| %>
     <li>
       <%= link_to plant.name, plant %>
+    </li>
   <% end %>
 </ul>
 
@@ -15,6 +16,7 @@
   <% @harvestable_plants.each do |plant| %>
     <li>
       <%= link_to plant.name, plant %>
+    </li>
   <% end %>
 </ul>
 
@@ -24,5 +26,6 @@
   <% @beds_ready_to_weed.each do |bed| %>
     <li>
       <%= link_to bed.name, bed %>
+    </li>
   <% end %>
 </ul>
