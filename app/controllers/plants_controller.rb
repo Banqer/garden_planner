@@ -57,6 +57,17 @@ class PlantsController < ApplicationController
     end
   end
 
+  # POST /plants/1/weed or /plants/1/weed.json
+  def weed
+    @plant = Plant.find(params[:plant_id])
+    @plant.weed!
+
+    respond_to do |format|
+      format.html { redirect_to garden_bed_path(@plant.garden_bed), notice: "#{@plant.name} was weeded from #{@plant.garden_bed.name}." }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plant

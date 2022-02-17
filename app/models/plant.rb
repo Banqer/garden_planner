@@ -6,4 +6,12 @@ class Plant < ApplicationRecord
 
   scope :recently_planted, -> { where('planted_at > ?', 1.month.ago )}
   scope :harvestable, -> { where('harvest_at < ?', Time.now )}
+
+  class CantWeedPlantError < StandardError; end
+
+  def weed!
+    raise CantWeedPlantError.new("#{name} isn't a weed!") unless species.weed?
+
+    destroy
+  end
 end

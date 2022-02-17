@@ -22,6 +22,7 @@
   <% @garden_bed.plants.each do |plant| %>
     <li>
       <%= link_to plant.name, plant %>
+      <%= button_to "Weed", plant_weed_path(plant) %>
     </li>
   <% end %>
 </ul>
