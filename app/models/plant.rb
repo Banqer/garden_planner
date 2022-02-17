@@ -12,6 +12,8 @@ class Plant < ApplicationRecord
   def weed!
     raise CantWeedPlantError.new("#{name} isn't a weed!") unless species.weed?
 
+    garden_bed.update(last_weeded_at: Time.now)
+
     destroy
   end
 end

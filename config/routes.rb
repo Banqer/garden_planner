@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :garden_beds
   resources :species
+
+  resources :garden_beds do
+    get :propagate_weeds
+  end
 
   resources :plants do
     post :weed

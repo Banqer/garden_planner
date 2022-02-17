@@ -57,6 +57,17 @@ class GardenBedsController < ApplicationController
     end
   end
 
+  def propagate_weeds
+    @garden_bed = GardenBed.find(params[:garden_bed_id])
+
+    @garden_bed.propagate_weeds!
+
+    respond_to do |format|
+      format.html { redirect_to garden_bed_url(@garden_bed), notice: "Weeds propagated for garden bed." }
+      format.json { render :show, status: :created, location: @garden_bed }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_garden_bed
