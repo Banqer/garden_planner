@@ -22,7 +22,9 @@ RSpec.describe Plant, type: :model do
     context "when the plant is not a weed" do
       let(:species) { FactoryBot.create(:species, weed: false) }
 
-      it "raises an error"
+      it "raises an error" do
+        expect { subject }.to raise_error
+      end
     end
   end
 end

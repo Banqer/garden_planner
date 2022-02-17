@@ -13,16 +13,25 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/plants", type: :request do
-  
+
   # Plant. As you add validations to Plant, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Big bean plant",
+      garden_bed_id: garden_bed.id,
+      species_id: species.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: nil
+    }
   }
+
+  let(:garden_bed) { FactoryBot.create(:garden_bed) }
+  let(:species) { FactoryBot.create(:species) }
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -76,9 +85,9 @@ RSpec.describe "/plants", type: :request do
         }.to change(Plant, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders an unsuccessful response (i.e. to display the 'new' template)" do
         post plants_url, params: { plant: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
@@ -86,14 +95,19 @@ RSpec.describe "/plants", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Big bean plant 2",
+          garden_bed_id: garden_bed.id,
+          species_id: species.id
+        }
       }
 
       it "updates the requested plant" do
         plant = Plant.create! valid_attributes
         patch plant_url(plant), params: { plant: new_attributes }
         plant.reload
-        skip("Add assertions for updated state")
+
+        expect(plant.name).to eq "Big bean plant 2"
       end
 
       it "redirects to the plant" do
@@ -105,10 +119,10 @@ RSpec.describe "/plants", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders an unsuccessful response (i.e. to display the 'edit' template)" do
         plant = Plant.create! valid_attributes
         patch plant_url(plant), params: { plant: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
@@ -125,6 +139,16 @@ RSpec.describe "/plants", type: :request do
       plant = Plant.create! valid_attributes
       delete plant_url(plant)
       expect(response).to redirect_to(plants_url)
+    end
+  end
+
+  describe "POST /weed" do
+    it "attepts to weed the requested plant" do
+      plant = Plant.create! valid_attributes
+
+      expect_any_instance_of(Plant).to receive(:weed!)
+
+      post plant_weed_url(plant)
     end
   end
 end

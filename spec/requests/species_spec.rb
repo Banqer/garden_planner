@@ -13,15 +13,19 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/species", type: :request do
-  
+
   # Species. As you add validations to Species, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Species 1"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: nil
+    }
   }
 
   describe "GET /index" do
@@ -76,9 +80,9 @@ RSpec.describe "/species", type: :request do
         }.to change(Species, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders an unsuccessful response (i.e. to display the 'new' template)" do
         post species_index_url, params: { species: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
@@ -86,14 +90,16 @@ RSpec.describe "/species", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Species 2"
+        }
       }
 
       it "updates the requested species" do
         species = Species.create! valid_attributes
         patch species_url(species), params: { species: new_attributes }
         species.reload
-        skip("Add assertions for updated state")
+        expect(species.name).to eq "Species 2"
       end
 
       it "redirects to the species" do
@@ -105,10 +111,10 @@ RSpec.describe "/species", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders an unsuccessful response (i.e. to display the 'edit' template)" do
         species = Species.create! valid_attributes
         patch species_url(species), params: { species: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end

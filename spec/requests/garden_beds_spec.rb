@@ -13,15 +13,19 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/garden_beds", type: :request do
-  
+
   # GardenBed. As you add validations to GardenBed, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Garden bed 1"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: nil
+    }
   }
 
   describe "GET /index" do
@@ -76,9 +80,9 @@ RSpec.describe "/garden_beds", type: :request do
         }.to change(GardenBed, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders an unsuccessful response (i.e. to display the 'new' template)" do
         post garden_beds_url, params: { garden_bed: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
@@ -86,14 +90,16 @@ RSpec.describe "/garden_beds", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Garden bed 2"
+        }
       }
 
       it "updates the requested garden_bed" do
         garden_bed = GardenBed.create! valid_attributes
         patch garden_bed_url(garden_bed), params: { garden_bed: new_attributes }
         garden_bed.reload
-        skip("Add assertions for updated state")
+        expect(garden_bed.name).to eq "Garden bed 2"
       end
 
       it "redirects to the garden_bed" do
@@ -105,10 +111,10 @@ RSpec.describe "/garden_beds", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders an unsuccessful response (i.e. to display the 'edit' template)" do
         garden_bed = GardenBed.create! valid_attributes
         patch garden_bed_url(garden_bed), params: { garden_bed: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).not_to be_successful
       end
     end
   end
@@ -125,6 +131,16 @@ RSpec.describe "/garden_beds", type: :request do
       garden_bed = GardenBed.create! valid_attributes
       delete garden_bed_url(garden_bed)
       expect(response).to redirect_to(garden_beds_url)
+    end
+  end
+
+  describe "POST /weed" do
+    it "attepts to weed the requested plant" do
+      garden_bed = GardenBed.create! valid_attributes
+
+      expect_any_instance_of(GardenBed).to receive(:propagate_weeds!)
+
+      get garden_bed_propagate_weeds_url(garden_bed)
     end
   end
 end
