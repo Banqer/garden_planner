@@ -11,9 +11,13 @@
   </head>
 
   <body>
+    <header>
+      <h1>Garden Planner</h1>
+      <%= render partial: "shared/main_nav" %>
+    </header>
 
-    <%= render partial: "shared/main_nav" %>
-
-    <%= yield %>
+    <div class="main">
+      <%= yield %>
+    </div>
   </body>
 </html>

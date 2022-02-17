@@ -1,31 +1,37 @@
-<h1>Garden Planner</h1>
+<div class="garden-status">
+  <div class="garden-status__item">
+    <h2>Recently planted</h2>
 
-<h2>Recently planted</h2>
+    <ul>
+      <% @recent_plants.each do |plant| %>
+        <li>
+          <%= link_to plant.name, plant %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<ul>
-  <% @recent_plants.each do |plant| %>
-    <li>
-      <%= link_to plant.name, plant %>
-    </li>
-  <% end %>
-</ul>
+  <div class="garden-status__item">
+    <h2>Ready to harvest</h2>
 
-<h2>Ready to harvest</h2>
+    <ul>
+      <% @harvestable_plants.each do |plant| %>
+        <li>
+          <%= link_to plant.name, plant %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<ul>
-  <% @harvestable_plants.each do |plant| %>
-    <li>
-      <%= link_to plant.name, plant %>
-    </li>
-  <% end %>
-</ul>
+  <div class="garden-status__item">
+    <h2>Beds to weed</h2>
 
-<h2>Beds to weed</h2>
-
-<ul>
-  <% @beds_ready_to_weed.each do |bed| %>
-    <li>
-      <%= link_to bed.name, bed %>
-    </li>
-  <% end %>
-</ul>
+    <ul>
+      <% @beds_ready_to_weed.each do |bed| %>
+        <li>
+          <%= link_to bed.name, bed %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
