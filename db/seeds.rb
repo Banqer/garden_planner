@@ -10,9 +10,15 @@
   Species.create(name: species_name)
 end
 
-["Front Garden Bed","Back Garden Bed"].each do |garden_bed_name|
-  GardenBed.create(name: garden_bed_name)
-end
+GardenBed.create(
+  name: "Front Garden Bed",
+  last_weeded_at: 3.months.ago
+)
+
+GardenBed.create(
+  name: "Back Garden Bed",
+  last_weeded_at: 2.days.ago
+)
 
 Plant.create(
   name: "Broccoli Plant 1",

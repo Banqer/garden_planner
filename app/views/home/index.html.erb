@@ -1,2 +1,28 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Garden Planner</h1>
+
+<h2>Recently planted</h2>
+
+<ul>
+  <% @recent_plants.each do |plant| %>
+    <li>
+      <%= link_to plant.name, plant %>
+  <% end %>
+</ul>
+
+<h2>Ready to harvest</h2>
+
+<ul>
+  <% @harvestable_plants.each do |plant| %>
+    <li>
+      <%= link_to plant.name, plant %>
+  <% end %>
+</ul>
+
+<h2>Beds to weed</h2>
+
+<ul>
+  <% @beds_ready_to_weed.each do |bed| %>
+    <li>
+      <%= link_to bed.name, bed %>
+  <% end %>
+</ul>
