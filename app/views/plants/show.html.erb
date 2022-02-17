@@ -17,12 +17,12 @@
 
 <p>
   <strong>Garden bed:</strong>
-  <%= @plant.garden_bed_id %>
+  <%= link_to @plant.garden_bed.name, @plant.garden_bed %>
 </p>
 
 <p>
   <strong>Species:</strong>
-  <%= @plant.species_id %>
+  <%= link_to @plant.species.name, @plant.species %>
 </p>
 
 <%= link_to 'Edit', edit_plant_path(@plant) %> |
