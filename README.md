@@ -1,4 +1,4 @@
-# Garden Planner
+# 🌱 Garden Planner 🌱
 
 An example Rails app to discuss in interviews.
 
